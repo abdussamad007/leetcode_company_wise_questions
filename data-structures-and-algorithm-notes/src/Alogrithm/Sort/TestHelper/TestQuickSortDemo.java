@@ -2,11 +2,6 @@ package Alogrithm.Sort.TestHelper;
 
 import Alogrithm.Sort.MergeSort.MergeSort;
 import Alogrithm.Sort.QuickSort.QuickSortRandom;
-
-/**
- * @author Yuzhe Ma
- * @date 2019/1/19
- */
 public class TestQuickSortDemo {
     public static void main(String[] args) {
         Integer[] integers1 = IntegerTestTool.getNearlyOrderedArr(100000, 10);

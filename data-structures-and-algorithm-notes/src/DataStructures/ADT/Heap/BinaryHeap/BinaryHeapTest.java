@@ -1,13 +1,5 @@
 package DataStructures.ADT.Heap.BinaryHeap;
 
-/**
- * Created with IDEA
- * Author: MaYuzhe
- * Date: 2018/7/7
- * Time: 19:53
- * <p>
- * 二叉堆测试类
- */
 public class BinaryHeapTest {
     public static void main(String[] args) {
         BinaryHeap binaryHeap = new BinaryHeap();

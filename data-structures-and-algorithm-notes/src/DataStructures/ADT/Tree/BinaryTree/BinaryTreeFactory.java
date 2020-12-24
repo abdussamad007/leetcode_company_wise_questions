@@ -1,18 +1,8 @@
 package DataStructures.ADT.Tree.BinaryTree;
-
-/**
- * Created with IDEA
- * Author: MaYuzhe
- * Date: 2018/6/15
- * Time: 14:28
- * <p>
- * 用于创建二叉树
- */
 public class BinaryTreeFactory {
 
     /**
      * Create a binary tree like this
-     * 生成一个如下所示的二叉树
      *
      *                      10
      *              5               15

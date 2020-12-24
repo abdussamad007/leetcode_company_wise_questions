@@ -3,10 +3,6 @@ package Alogrithm.Sort.QuickSort;
 import Alogrithm.Sort.BaseSort;
 import Alogrithm.Sort.InsertionSort.InsertionSort;
 
-/**
- * @author Yuzhe Ma
- * @date 2019/1/21
- */
 public class QuickSort3Ways extends BaseSort {
     @Override
     public <T extends Comparable<? super T>> void sort(T[] array) {
@@ -51,14 +47,6 @@ public class QuickSort3Ways extends BaseSort {
         quickSort(arr, gt, r);
     }
 
-    /**
-     * 调换索引1和索引2两处的元素
-     *
-     * @param array  原数组
-     * @param index1 索引1
-     * @param index2 索引2
-     * @param <T>
-     */
     public static <T> void swapReferences(T[] array, int index1, int index2) {
         T tmp = array[index1];
         array[index1] = array[index2];

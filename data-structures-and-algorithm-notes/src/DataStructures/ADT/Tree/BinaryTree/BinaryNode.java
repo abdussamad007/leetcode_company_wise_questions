@@ -1,20 +1,7 @@
 package DataStructures.ADT.Tree.BinaryTree;
-
-/**
- * Created with IDEA
- * Author: MaYuzhe
- * Date: 2018/6/15
- * Time: 14:20
- * <p>
- * <p>
- * 二叉树节点类
- */
 public class BinaryNode {
-    // 节点元素
     private Object element;
-    // 左节点
     private BinaryNode left;
-    // 右节点
     private BinaryNode right;
 
     public Object getElement() {

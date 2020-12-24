@@ -3,15 +3,6 @@ package DataStructures.ADT.Tree.AvlTree;
 
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * Created with IDEA
- * Author: MaYuzhe
- * Date: 2018/6/18
- * Time: 23:36
- * <p>
- * 平衡二叉树 Adelson-Velskii & Landis
- */
 public class AvlTree<T extends Comparable<? super T>> {
 
     private static class AvlNode<T> {
@@ -39,27 +30,14 @@ public class AvlTree<T extends Comparable<? super T>> {
         root = null;
     }
 
-    /**
-     * 插入元素
-     *
-     * @param t 要被插入的元素
-     */
     public void insert(T t) {
         root = insert(t, root);
     }
 
-    /**
-     * 移除元素
-     *
-     * @param t 要被移除的元素
-     */
     public void remove(T t) {
         root = remove(t, root);
     }
 
-    /**
-     * 检查树是否平衡
-     */
     public boolean checkBalance() {
         Map<String, Boolean> resultMap = new HashMap<>(1);
         resultMap.put("isBalance", true);
@@ -67,48 +45,26 @@ public class AvlTree<T extends Comparable<? super T>> {
         return resultMap.get("isBalance");
     }
 
-    /**
-     * 按照中序遍历打印树
-     */
     public void printTree() {
         if (isEmpty()) {
-            System.out.println("空树/Empty tree");
+            System.out.println("/Empty tree");
         } else {
             printTree(root);
         }
     }
 
-    /**
-     * 判断树是否为空
-     *
-     * @return 为空则返回true，否则返回false
-     */
     public boolean isEmpty() {
         return root == null;
     }
 
-    /**
-     * 判断元素是否在树中
-     *
-     * @param t 要被判断的元素
-     * @return 存在则返回true，不存在返回false
-     */
     public boolean contains(T t) {
         return contains(t, root);
     }
 
-    /**
-     * 使树置空
-     */
     public void makeEmpty() {
         root = null;
     }
 
-    /**
-     * 查找最小元素
-     *
-     * @return 最小元素
-     */
     public T findMin() {
         if (isEmpty()) {
             return null;
@@ -116,11 +72,6 @@ public class AvlTree<T extends Comparable<? super T>> {
         return findMin(root).element;
     }
 
-    /**
-     * 查找最大元素
-     *
-     * @return 最大元素
-     */
     public T findMax() {
         if (isEmpty()) {
             return null;
@@ -128,12 +79,6 @@ public class AvlTree<T extends Comparable<? super T>> {
         return findMax(root).element;
     }
 
-    /**
-     * 获得节点的高度
-     *
-     * @param node 节点
-     * @return 节点高度
-     */
     private int height(AvlNode<T> node) {
         return node == null ? -1 : node.height;
     }
@@ -164,9 +109,6 @@ public class AvlTree<T extends Comparable<? super T>> {
         } else if (compareResult > 0) {
             node.right = remove(t, node.right);
         } else if (node.left != null && node.right != null) {
-//            node.element = findMin(node.right).element;
-//            node.right = remove(node.element, node.right);
-            // 用removeRightMin方法替代上面两个操作，将两次遍历合并成一次遍历完成，提高效率
             node.right = removeRightMin(node, node.right);
         } else {
             node = node.left != null ? node.left : node.right;
@@ -184,12 +126,6 @@ public class AvlTree<T extends Comparable<? super T>> {
         return rNode;
     }
 
-    /**
-     * 平衡节点
-     *
-     * @param node
-     * @return
-     */
     private AvlNode<T> balance(AvlNode<T> node) {
         if (node == null) {
             return null;
@@ -197,14 +133,12 @@ public class AvlTree<T extends Comparable<? super T>> {
 
         if (height(node.left) - height(node.right) > ALLOWED_IMBALANCE) {
             if (height(node.left.left) >= height(node.left.right)) {
-                // 左节点的左子节点高度大于左节点的右子节点或者左右子节点高度相等时
                 node = rotateWithLeftChild(node);
             } else {
                 node = doubleWithLeftChild(node);
             }
         } else if (height(node.right) - height(node.left) > ALLOWED_IMBALANCE) {
             if (height(node.right.right) >= height(node.right.left)) {
-                // 右节点的右子节点高度大于右节点的左子节点或者左右子节点高度相等时
                 node = rotateWithRightChild(node);
             } else {
                 node = doubleWithRightChild(node);
@@ -214,12 +148,6 @@ public class AvlTree<T extends Comparable<? super T>> {
         return node;
     }
 
-    /**
-     * 左单旋转
-     *
-     * @param k2
-     * @return
-     */
     private AvlNode<T> rotateWithLeftChild(AvlNode<T> k2) {
         AvlNode<T> k1 = k2.left;
         k2.left = k1.right;
@@ -229,12 +157,6 @@ public class AvlTree<T extends Comparable<? super T>> {
         return k1;
     }
 
-    /**
-     * 右单旋转
-     *
-     * @param k1
-     * @return
-     */
     private AvlNode<T> rotateWithRightChild(AvlNode<T> k1) {
         AvlNode<T> k2 = k1.right;
         k1.right = k2.left;
@@ -244,23 +166,10 @@ public class AvlTree<T extends Comparable<? super T>> {
         return k2;
     }
 
-    /**
-     * 左-右双旋转
-     *
-     * @param k3
-     * @return
-     */
     private AvlNode<T> doubleWithLeftChild(AvlNode<T> k3) {
         k3.left = rotateWithRightChild(k3.left);
         return rotateWithLeftChild(k3);
     }
-
-    /**
-     * 右-左双旋转
-     *
-     * @param k1
-     * @return
-     */
     private AvlNode<T> doubleWithRightChild(AvlNode<T> k1) {
         k1.right = rotateWithLeftChild(k1.right);
         return rotateWithRightChild(k1);
@@ -313,7 +222,6 @@ public class AvlTree<T extends Comparable<? super T>> {
         int rightHeight = checkBalance(node.right, resultMap);
         if (Math.abs(height(node.left) - height(node.right)) > 1 ||
                 height(node.left) != leftHeight || height(node.right) != rightHeight)
-//            System.out.println("该树不平衡/Not balance");
             resultMap.put("isBalance", false);
         return height(node);
     }

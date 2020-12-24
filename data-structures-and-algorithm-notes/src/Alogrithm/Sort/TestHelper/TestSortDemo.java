@@ -7,10 +7,6 @@ import Alogrithm.Sort.QuickSort.QuickSort2Ways;
 import Alogrithm.Sort.QuickSort.QuickSort3Ways;
 import Alogrithm.Sort.ShellSort.ShellSort;
 
-/**
- * @author Yuzhe Ma
- * @date 2019/1/18
- */
 public class TestSortDemo {
     public static void main(String[] args) {
         Integer[] integers1 = IntegerTestTool.getRandomArr(0, 10, 1000000);
